@@ -32,9 +32,9 @@ var create = function(entity, self) {
 
 	var autogenParam = (autogenColumns.length) ? ("?defaults=" + autogenColumns.join(',')) : "";
 
-    console.log(entity);
+    console.log("id: " + entity.id + ". TS: " + entity.timestamp_col);
 	http.post(self.url + "/catalog/" + self.catalog.id + "/entity/" + utils._fixedEncodeURIComponent(self.schema.name) + ":" + utils._fixedEncodeURIComponent(self.table.name) + autogenParam, [entity]).then(function(response) {
-        console.log(response.data);
+        console.log("id: " + response.data[0].id + ". TS: " + response.data[0].timestamp_col);
 		defer.resolve(response.data);
 	}, function(err) {
 		defer.reject(err, self);
